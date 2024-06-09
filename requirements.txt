@@ -1,4 +1,4 @@
 requests
-base64
+bs4
 flask
 gunicorn
