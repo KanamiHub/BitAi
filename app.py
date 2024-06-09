@@ -7,6 +7,7 @@ from bitai import BitAi
 from flask import Flask, request
 app = Flask(__name__)
 autocron = False
+bitai = BitAi()
 def cronjob(host):
     while True:
         time.sleep(30)
@@ -43,7 +44,7 @@ def process():
     if invalid_token:
         return '''Token invalido'''
     ide = str(random.randint(10000,99999))
-    t = threading.Thread(target=BitAi.download, args=(url, callback, {"ide":ide}))
+    t = threading.Thread(target=bitai.download, args=(url, callback, {"ide":ide}))
     t.start()
     procesos.append({"ide":ide, "data":{"process":"loading"}})
     return ide
