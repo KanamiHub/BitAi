@@ -1,9 +1,9 @@
-import pickle
 import random
 import string
 import threading
 import time
 import requests
+from bitai import BitAi
 from flask import Flask, request
 app = Flask(__name__)
 autocron = False
@@ -23,8 +23,6 @@ def callback(json, args):
     for p in procesos:
         if p["ide"] == args["ide"]:
             p["data"] = str(json)
-with open("bitai", "rb") as file:
-    BitAi = pickle.load(file)
 @app.route("/")
 def home():
     global autocron
